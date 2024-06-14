@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PostMapping("/oneUserDTO/{id}")
-    UserDTO updateUserDTOInfo(@RequestBody String id, @RequestBody UserDTO userDTO) {
+    UserDTO updateUserDTOInfo(@PathVariable("id") String id, @RequestBody UserDTO userDTO) {
         return userService.updateUserDTO(id, userDTO);
     }
 }
