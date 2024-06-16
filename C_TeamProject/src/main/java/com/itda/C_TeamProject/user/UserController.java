@@ -12,9 +12,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/oneUserDTO")
-    ResponseEntity<UserDTO> getUserDTOInfo(@RequestParam String id) {
-        UserDTO userInfoDTOById = userService.getUserInfoDTOById(id);
+    @GetMapping("/oneUserHealthDTO")
+    ResponseEntity<UserHealthDTO> getUserDTOInfo(@RequestParam String id) {
+        UserHealthDTO userInfoDTOById = userService.getUserInfoDTOById(id);
         if (userInfoDTOById == null) {
             return ResponseEntity.notFound().build();
         } else {
@@ -32,14 +32,14 @@ public class UserController {
         }
     }
 
-    @PostMapping("/oneUser")
+    @PostMapping("/createUser")
     User createNewUser(@RequestBody User user) {
         User createUser = userService.createUser(user);
         return createUser;
     }
 
-    @PostMapping("/oneUserDTO/{id}")
-    UserDTO updateUserDTOInfo(@PathVariable("id") String id, @RequestBody UserDTO userDTO) {
-        return userService.updateUserDTO(id, userDTO);
+    @PostMapping("/oneUserHealthDTO/{id}")
+    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userDTO) {
+        return userService.updateUserHealthDTO(id, userDTO);
     }
 }

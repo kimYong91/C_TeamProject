@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class UserHealthDTO {
     private int userAge;            // 나이
     private char userGender;        // 성별
     private int userWeight;         // 몸무게

@@ -1,11 +1,8 @@
 package com.itda.C_TeamProject.user;
 
-import org.apache.el.lang.ELArithmetic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class UserService {
@@ -18,9 +15,9 @@ public class UserService {
         return userInfo;
     }
 
-    public UserDTO getUserInfoDTOById(String user_Id) {
+    public UserHealthDTO getUserInfoDTOById(String user_Id) {
         User userInfo = getUserInfoById(user_Id);
-        UserDTO dto = userInfo.toDTO();
+        UserHealthDTO dto = userInfo.toDTO();
         return dto;
     }
 
@@ -41,7 +38,7 @@ public class UserService {
 
     // 성별, 나이, 키, 몸무게, 기초대사량의 정보 업데이트
     @Transactional
-    public UserDTO updateUserDTO(String user_Id, UserDTO userDTO) {
+    public UserHealthDTO updateUserHealthDTO(String user_Id, UserHealthDTO userDTO) {
         User user = getUserInfoById(user_Id);
         user.setUserAge(userDTO.getUserAge());
         user.setUserGender(userDTO.getUserGender());
@@ -49,7 +46,7 @@ public class UserService {
         user.setUserHeight(userDTO.getUserHeight());
         user.setBasalMetabolism(userDTO.getBasalMetabolism());
         User savedUser = userRepository.save(user);
-        UserDTO dto = savedUser.toDTO();
+        UserHealthDTO dto = savedUser.toDTO();
         return dto;
     }
 }

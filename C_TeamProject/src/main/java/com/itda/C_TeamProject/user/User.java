@@ -43,7 +43,7 @@ public class User {
         this.joinDate = LocalDateTime.now();
     }
 
-    public UserDTO toDTO() {
-        return new UserDTO(userAge, userGender, userWeight, userHeight, basalMetabolism);
+    public UserHealthDTO toDTO() {
+        return new UserHealthDTO(userAge, userGender, userWeight, userHeight, basalMetabolism);
     }
 }
