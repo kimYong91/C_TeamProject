@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/jwt")
+@RequestMapping("/itda")
 @RequiredArgsConstructor
 public class AuthController {
 
