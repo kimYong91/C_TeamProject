@@ -22,8 +22,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("/oneUser")
-    ResponseEntity<User> getOneUserAllInfo(@RequestParam String id) {
+    @GetMapping("/oneUserInfo")
+    ResponseEntity<User> getOneUserInfo(@RequestParam String id) {
         User userInfoById = userService.getUserInfoById(id);
         if (userInfoById == null) {
             return ResponseEntity.notFound().build();
@@ -43,8 +43,4 @@ public class UserController {
         return userService.updateUserHealthDTO(id, userDTO);
     }
 
-    @GetMapping("/test")
-    String test() {
-        return "테스트";
-    }
 }
