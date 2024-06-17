@@ -37,7 +37,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	runtimeOnly 'com.h2database:h2'				// In-Memory Database (경량 관계형 DB)
-	runtimeOnly 'mysql:mysql-connector-java'	// MySQL 접속 커넥터
+	runtimeOnly 'com.mysql:mysql-connector-j:8.4.0'	// MySQL 접속 커넥터
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'

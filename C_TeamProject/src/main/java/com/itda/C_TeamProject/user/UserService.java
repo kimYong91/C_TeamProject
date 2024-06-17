@@ -1,6 +1,7 @@
 package com.itda.C_TeamProject.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +10,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User getUserInfoById(String user_Id) {
         User userInfo = userRepository.findById(user_Id).orElse(null);
@@ -25,9 +29,11 @@ public class UserService {
     // 회원 가입
     @Transactional
     public User createUser(User user) {
-        User userInfoById = getUserInfoById(user.getUser_Id());
-        User createUser = new User(user.getUser_Id(), user.getPassword(), user.getEmail(), user.getPhoneNumber(), user.getUserAge(), user.getUserGender(), user.getUserWeight(), user.getUserHeight(), user.getBasalMetabolism());
+        User userInfoById = getUserInfoById(user.getUsername());
+        User createUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNumber(),
+                user.getUserAge(), user.getUserGender(), user.getUserWeight(), user.getUserHeight(), user.getBasalMetabolism());
         if (userInfoById == null) {
+            createUser.setPassword(passwordEncoder.encode(user.getPassword()));
             User saved = userRepository.save(createUser);
             return saved;
         } else {

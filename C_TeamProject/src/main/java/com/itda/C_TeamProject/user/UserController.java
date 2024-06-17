@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/createUser")
-    User createNewUser(@RequestBody User user) {
+    public User createNewUser(@RequestBody User user) {
         User createUser = userService.createUser(user);
         return createUser;
     }
@@ -41,5 +41,10 @@ public class UserController {
     @PostMapping("/oneUserHealthDTO/{id}")
     UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userDTO) {
         return userService.updateUserHealthDTO(id, userDTO);
+    }
+
+    @GetMapping("/test")
+    String test() {
+        return "테스트";
     }
 }

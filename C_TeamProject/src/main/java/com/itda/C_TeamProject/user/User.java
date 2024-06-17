@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    private String user_Id;         // 아이디
+    private String username;         // 아이디
     private String password;        // 비밀번호
     private String email;           // 이메일
     private String phoneNumber;     // 핸드폰 번호
@@ -30,8 +30,8 @@ public class User {
     @Column(name = "join_date", nullable = false )
     private LocalDateTime joinDate; // 가입 날짜
 
-    public User(String user_Id, String password, String email, String phoneNumber, int userAge, char userGender, int userWeight, double userHeight, int basalMetabolism) {
-        this.user_Id = user_Id;
+    public User(String username, String password, String email, String phoneNumber, int userAge, char userGender, int userWeight, double userHeight, int basalMetabolism) {
+        this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;

@@ -1,7 +1,5 @@
 package com.itda.C_TeamProject.user;
 
-import com.itda.C_TeamProject.user.User;
-import com.itda.C_TeamProject.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,7 +23,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         UserDetails userDetails = org.springframework.security.core.userdetails.User.builder()
-                .username(user.getUser_Id())
+                .username(user.getUsername())
                 .password(user.getPassword())
                 .roles("USER")
                 .build();
