@@ -30,7 +30,7 @@ public class User {
     @Column(name = "join_date", nullable = false )
     private LocalDateTime joinDate; // 가입 날짜
 
-    public User(String username, String password, String email, String phoneNumber, int userAge, char userGender, int userWeight, double userHeight, int basalMetabolism) {
+    public User(String username, String password, String email, String phoneNumber, int userAge, char userGender, int userWeight, double userHeight) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -39,7 +39,6 @@ public class User {
         this.userGender = userGender;
         this.userWeight = userWeight;
         this.userHeight = userHeight;
-        this.basalMetabolism = basalMetabolism;
         this.joinDate = LocalDateTime.now();
     }
 

@@ -31,7 +31,7 @@ public class UserService {
     public User createUser(User user) {
         User userInfoById = getUserInfoById(user.getUsername());
         User createUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNumber(),
-                user.getUserAge(), user.getUserGender(), user.getUserWeight(), user.getUserHeight(), user.getBasalMetabolism());
+                user.getUserAge(), user.getUserGender(), user.getUserWeight(), user.getUserHeight());
         if (userInfoById == null) {
             createUser.setPassword(passwordEncoder.encode(user.getPassword()));
             User saved = userRepository.save(createUser);
@@ -42,7 +42,7 @@ public class UserService {
 
     }
 
-    // 성별, 나이, 키, 몸무게, 기초대사량의 정보 업데이트
+    // 성별, 나이, 키, 몸무게의 정보 업데이트
     @Transactional
     public UserHealthDTO updateUserHealthDTO(String username, UserHealthDTO userDTO) {
         User user = getUserInfoById(username);
@@ -50,7 +50,6 @@ public class UserService {
         user.setUserGender(userDTO.getUserGender());
         user.setUserWeight(userDTO.getUserWeight());
         user.setUserHeight(userDTO.getUserHeight());
-        user.setBasalMetabolism(userDTO.getBasalMetabolism());
         User savedUser = userRepository.save(user);
         UserHealthDTO dto = savedUser.toDTO();
         return dto;
