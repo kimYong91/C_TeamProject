@@ -46,4 +46,8 @@ public class User {
     public UserHealthDTO toDTO() {
         return new UserHealthDTO(userAge, userGender, userWeight, userHeight, basalMetabolism);
     }
+
+    public UserPersonalDTO toPersonalDTO() {
+        return new UserPersonalDTO(username, password, email, phoneNumber);
+    }
 }

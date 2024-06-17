@@ -43,4 +43,9 @@ public class UserController {
         return userService.updateUserHealthDTO(id, userDTO);
     }
 
+    @PostMapping("/oneUserInfo/{id}")
+    UserPersonalDTO updateUserInfo(@PathVariable("id") String id, @RequestBody UserPersonalDTO userPersonalDTO) {
+        return userService.updateUserPersonalDTO(id, userPersonalDTO);
+    }
+
 }

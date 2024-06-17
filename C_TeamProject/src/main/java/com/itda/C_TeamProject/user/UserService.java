@@ -44,8 +44,8 @@ public class UserService {
 
     // 성별, 나이, 키, 몸무게, 기초대사량의 정보 업데이트
     @Transactional
-    public UserHealthDTO updateUserHealthDTO(String user_Id, UserHealthDTO userDTO) {
-        User user = getUserInfoById(user_Id);
+    public UserHealthDTO updateUserHealthDTO(String username, UserHealthDTO userDTO) {
+        User user = getUserInfoById(username);
         user.setUserAge(userDTO.getUserAge());
         user.setUserGender(userDTO.getUserGender());
         user.setUserWeight(userDTO.getUserWeight());
@@ -53,6 +53,17 @@ public class UserService {
         user.setBasalMetabolism(userDTO.getBasalMetabolism());
         User savedUser = userRepository.save(user);
         UserHealthDTO dto = savedUser.toDTO();
+        return dto;
+    }
+
+    @Transactional
+    public UserPersonalDTO updateUserPersonalDTO(String username, UserPersonalDTO userPersonalDTO) {
+        User user = getUserInfoById(username);
+        user.setPassword(userPersonalDTO.getPassword());
+        user.setEmail(userPersonalDTO.getEmail());
+        user.setPhoneNumber(userPersonalDTO.getPhoneNumber());
+        User savedUserPersonal = userRepository.save(user);
+        UserPersonalDTO dto = savedUserPersonal.toPersonalDTO();
         return dto;
     }
 }
