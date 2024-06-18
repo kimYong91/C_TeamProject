@@ -42,13 +42,13 @@ public class User {
         return new UserPersonalDTO(username, password, email, phoneNumber);
     }
 
-    public static double calculateBMR(double height, int age, double weight, String gender) {
-        double bmr = 0;
+    public static int calculateBMR(double height, int age, double weight, String gender) {
+        int bmr = 0;
 
         if (gender.equalsIgnoreCase("남")) {
-            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            bmr = (int) (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age));
         } else if (gender.equalsIgnoreCase("여")) {
-            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            bmr = (int) (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age));
         }
 
         return bmr;
