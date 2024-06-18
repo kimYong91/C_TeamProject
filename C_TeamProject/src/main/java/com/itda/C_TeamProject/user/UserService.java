@@ -5,6 +5,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UserService {
 
@@ -30,11 +32,15 @@ public class UserService {
     @Transactional
     public User createUser(User user) {
         User userInfoById = getUserInfoById(user.getUsername());
-        User createUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNumber(),
-                user.getUserAge(), user.getUserGender(), user.getUserWeight(), user.getUserHeight());
+        System.out.println(user);
+//        User createUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNumber(),
+//                user.getDateOfBirth(), user.getUserGender(), user.getUserWeight(), user.getUserHeight());
         if (userInfoById == null) {
-            createUser.setPassword(passwordEncoder.encode(user.getPassword()));
-            User saved = userRepository.save(createUser);
+            user.setUserAge(User.calculateAge(user.getDateOfBirth()));
+            user.setBasalMetabolism(User.calculateBMR(user.getUserHeight(), user.getUserAge(), user.getUserWeight(), user.getUserGender()));
+            user.setJoinDate(LocalDateTime.now());
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            User saved = userRepository.save(user);
             return saved;
         } else {
             return null;
