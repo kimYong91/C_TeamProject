@@ -12,7 +12,7 @@ public class UserHealthDTO {
     private String userGender;        // 성별
     private int userWeight;         // 몸무게
     private double userHeight;      // 키
-    private double basalMetabolism;    // 기초대사랑
+    private double userBasalMetabolism;    // 기초대사랑
 
     public User toEntity(){
         User user = User.builder()
@@ -20,7 +20,7 @@ public class UserHealthDTO {
                 .userGender(userGender)
                 .userHeight(userHeight)
                 .userWeight(userWeight)
-                .basalMetabolism(basalMetabolism)
+                .basalMetabolism(userBasalMetabolism)
                 .build();
         return user;
     }
