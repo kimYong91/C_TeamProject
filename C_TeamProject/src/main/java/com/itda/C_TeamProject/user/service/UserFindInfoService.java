@@ -3,6 +3,7 @@ package com.itda.C_TeamProject.user.service;
 import com.itda.C_TeamProject.user.UserRepository;
 import com.itda.C_TeamProject.user.data.User;
 import com.itda.C_TeamProject.user.data.UserFindPasswordDTO;
+import com.itda.C_TeamProject.user.data.UserFindNameDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -51,4 +52,19 @@ public class UserFindInfoService {
         return password.toString();
     }
 
+    public String getUserFindName(UserFindNameDTO userFindNameDTO) {
+        String phoneNumber = userFindNameDTO.getPhoneNumber();
+        String email = userFindNameDTO.getEmail();
+        String dateOfBirth = userFindNameDTO.getDateOfBirth();
+        User userInfo = userRepository.findByEmailAndPhoneNumberAndDateOfBirth(email, phoneNumber, dateOfBirth);
+        if (userInfo != null) {
+            if (userInfo.getEmail().equals(email) &&
+            userInfo.getPhoneNumber().equals(phoneNumber) &&
+            userInfo.getDateOfBirth().equals(dateOfBirth)) {
+                String username = userInfo.getUsername();
+                return username;
+            }
+        }
+        return null;
+    }
 }
