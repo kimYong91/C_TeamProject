@@ -12,6 +12,7 @@ public class UserPersonalDTO {
     private String password;        // 비밀번호
     private String email;           // 이메일
     private String phoneNumber;     // 핸드폰 번호
+    private String dateOfBirth;            // 생년월일
 
     public User toEntity(){
         User user = User.builder()
@@ -19,6 +20,7 @@ public class UserPersonalDTO {
                 .password(password)
                 .email(email)
                 .phoneNumber(phoneNumber)
+                .dateOfBirth(dateOfBirth)
                 .build();
         return user;
     }

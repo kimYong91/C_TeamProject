@@ -50,28 +50,5 @@ public class UserService {
         }
     }
 
-    // 성별, 나이, 키, 몸무게의 정보 업데이트
-    @Transactional
-    public UserHealthDTO updateUserHealthDTO(String username, UserHealthDTO userDTO) {
-        User user = getUserInfoByUserName(username);
-        user.setUserAge(userDTO.getUserAge());
-        user.setUserGender(userDTO.getUserGender());
-        user.setUserWeight(userDTO.getUserWeight());
-        user.setUserHeight(userDTO.getUserHeight());
-        User savedUser = userRepository.save(user);
-        UserHealthDTO dto = savedUser.toDTO();
-        return dto;
-    }
 
-    // 비밀번호, 이메일, 핸드폰번호의 개인정보 업데이트
-    @Transactional
-    public UserPersonalDTO updateUserPersonalDTO(String username, UserPersonalDTO userPersonalDTO) {
-        User user = getUserInfoByUserName(username);
-        user.setPassword(userPersonalDTO.getPassword());
-        user.setEmail(userPersonalDTO.getEmail());
-        user.setPhoneNumber(userPersonalDTO.getPhoneNumber());
-        User savedUserPersonal = userRepository.save(user);
-        UserPersonalDTO dto = savedUserPersonal.toPersonalDTO();
-        return dto;
-    }
 }

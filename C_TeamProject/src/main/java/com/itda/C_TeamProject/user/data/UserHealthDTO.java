@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserHealthDTO {
-    private int userAge;            // 나이
     private String userGender;        // 성별
     private int userWeight;         // 몸무게
     private double userHeight;      // 키
@@ -16,7 +15,6 @@ public class UserHealthDTO {
 
     public User toEntity(){
         User user = User.builder()
-                .userAge(userAge)
                 .userGender(userGender)
                 .userHeight(userHeight)
                 .userWeight(userWeight)

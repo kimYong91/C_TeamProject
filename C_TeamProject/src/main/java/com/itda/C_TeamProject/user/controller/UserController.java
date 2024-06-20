@@ -47,15 +47,7 @@ public class UserController {
         return createUser;
     }
 
-    @PostMapping("/oneUserHealthDTO/{id}")
-    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userDTO) {
-        return userService.updateUserHealthDTO(id, userDTO);
-    }
 
-    @PostMapping("/oneUserInfo/{id}")
-    UserPersonalDTO updateUserInfo(@PathVariable("id") String id, @RequestBody UserPersonalDTO userPersonalDTO) {
-        return userService.updateUserPersonalDTO(id, userPersonalDTO);
-    }
 
     @PostMapping("/findPassword")
     public ResponseEntity<Map<String, String>> findPassword(@RequestBody UserFindPasswordDTO userFindPasswordDTO) {

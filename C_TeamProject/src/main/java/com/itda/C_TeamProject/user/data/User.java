@@ -35,11 +35,11 @@ public class User {
     private LocalDateTime joinDate; // 가입 날짜
 
     public UserHealthDTO toDTO() {
-        return new UserHealthDTO(userAge, userGender, userWeight, userHeight, basalMetabolism);
+        return new UserHealthDTO(userGender, userWeight, userHeight, basalMetabolism);
     }
 
     public UserPersonalDTO toPersonalDTO() {
-        return new UserPersonalDTO(username, password, email, phoneNumber);
+        return new UserPersonalDTO(username, password, email, phoneNumber, dateOfBirth);
     }
 
     public UserFindNameDTO toFindUserNameDTO() {
