@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.SecureRandom;
+
 @Service
 public class UserFindInfoService {
 
@@ -18,7 +20,7 @@ public class UserFindInfoService {
     private PasswordEncoder passwordEncoder;
 
     @Transactional
-    public void  getUserFindPassword(UserFindPasswordDTO userFindPasswordDTO) {
+    public String getUserFindPassword(UserFindPasswordDTO userFindPasswordDTO) {
         User userInfo = userRepository.findByUsername(userFindPasswordDTO.getUsername());
         if (userInfo != null) {
             if (userInfo.getEmail().equals(userFindPasswordDTO.getEmail()) &&
@@ -31,13 +33,22 @@ public class UserFindInfoService {
                 String encryptedPassword = passwordEncoder.encode(newPassword);
                 userInfo.setPassword(encryptedPassword);
                 userRepository.save(userInfo);
+                return newPassword;
             }
         }
+        return null;
     }
     private String generateTemporaryPassword() {
-        // 임시 비밀번호 생성 로직
-        // 예: 랜덤한 문자열 생성
-        return "temporaryPassword123";
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_+=<>?";
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < 12; i++) {
+            int index = random.nextInt(characters.length());
+            password.append(characters.charAt(index));
+        }
+
+        return password.toString();
     }
 
 }

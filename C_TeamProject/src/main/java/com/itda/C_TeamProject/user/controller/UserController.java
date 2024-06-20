@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/itda")
 public class UserController {
@@ -58,8 +61,10 @@ public class UserController {
     }
 
     @PostMapping("/findPassword")
-    public ResponseEntity<String> findPassword(@RequestParam UserFindPasswordDTO userFindPasswordDTO) {
-        findUserInfoService.getUserFindPassword(userFindPasswordDTO);
-        return ResponseEntity.ok("비밀번호 재설정 되었습니다.");
+    public ResponseEntity<Map<String, String>> findPassword(@RequestBody UserFindPasswordDTO userFindPasswordDTO) {
+        String password = findUserInfoService.getUserFindPassword(userFindPasswordDTO);
+        Map<String, String> map = new HashMap<>();
+        map.put("newPassword", password);
+        return ResponseEntity.ok(map);
     }
 }
