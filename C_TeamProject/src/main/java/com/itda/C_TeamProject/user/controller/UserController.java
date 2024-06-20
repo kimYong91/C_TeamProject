@@ -70,7 +70,7 @@ public class UserController {
         String username = findUserInfoService.getUserFindName(userFindNameDTO);
         System.out.println(username);
         Map<String, String> map = new HashMap<>();
-        map.put("newUsername", username);
+        map.put("username", username);
         return ResponseEntity.ok(map);
     }
 }
