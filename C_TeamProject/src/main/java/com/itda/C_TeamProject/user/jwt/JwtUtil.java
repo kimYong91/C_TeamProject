@@ -1,4 +1,4 @@
-package com.itda.C_TeamProject.jwt;
+package com.itda.C_TeamProject.user.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

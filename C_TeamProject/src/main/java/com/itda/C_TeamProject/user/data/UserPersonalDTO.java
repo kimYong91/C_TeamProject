@@ -1,4 +1,4 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

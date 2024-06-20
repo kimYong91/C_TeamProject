@@ -1,5 +1,6 @@
 package com.itda.C_TeamProject.user;
 
+import com.itda.C_TeamProject.user.data.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

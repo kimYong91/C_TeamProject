@@ -1,6 +1,12 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.controller;
 
 
+import com.itda.C_TeamProject.user.data.User;
+import com.itda.C_TeamProject.user.data.UserFindPasswordDTO;
+import com.itda.C_TeamProject.user.data.UserHealthDTO;
+import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+import com.itda.C_TeamProject.user.service.UserFindInfoService;
+import com.itda.C_TeamProject.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserFindInfoService findUserInfoService;
 
     @GetMapping("/oneUserHealthDTO")
     ResponseEntity<UserHealthDTO> getUserDTOInfo(@RequestParam String id) {
@@ -24,7 +33,7 @@ public class UserController {
 
     @GetMapping("/oneUserInfo")
     ResponseEntity<User> getOneUserInfo(@RequestParam String id) {
-        User userInfoById = userService.getUserInfoById(id);
+        User userInfoById = userService.getUserInfoByUserName(id);
         if (userInfoById == null) {
             return ResponseEntity.notFound().build();
         } else {
@@ -48,4 +57,9 @@ public class UserController {
         return userService.updateUserPersonalDTO(id, userPersonalDTO);
     }
 
+    @PostMapping("/findPassword")
+    public ResponseEntity<String> findPassword(@RequestParam UserFindPasswordDTO userFindPasswordDTO) {
+        findUserInfoService.getUserFindPassword(userFindPasswordDTO);
+        return ResponseEntity.ok("비밀번호 재설정 되었습니다.");
+    }
 }

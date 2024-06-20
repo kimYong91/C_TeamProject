@@ -1,5 +1,9 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.service;
 
+import com.itda.C_TeamProject.user.data.User;
+import com.itda.C_TeamProject.user.data.UserHealthDTO;
+import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+import com.itda.C_TeamProject.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,25 +20,24 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User getUserInfoById(String user_Id) {
-        User userInfo = userRepository.findById(user_Id).orElse(null);
+    // 유저 모든 정보 가져오기
+    public User getUserInfoByUserName(String userName) {
+        User userInfo = userRepository.findById(userName).orElse(null);
         return userInfo;
     }
 
-    public UserHealthDTO getUserInfoDTOById(String user_Id) {
-        User userInfo = getUserInfoById(user_Id);
+    // 유저 건강 정보 가져오기
+    public UserHealthDTO getUserInfoDTOById(String userName) {
+        User userInfo = getUserInfoByUserName(userName);
         UserHealthDTO dto = userInfo.toDTO();
         return dto;
     }
 
-
     // 회원 가입
     @Transactional
     public User createUser(User user) {
-        User userInfoById = getUserInfoById(user.getUsername());
+        User userInfoById = getUserInfoByUserName(user.getUsername());
         System.out.println(user);
-//        User createUser = new User(user.getUsername(), user.getPassword(), user.getEmail(), user.getPhoneNumber(),
-//                user.getDateOfBirth(), user.getUserGender(), user.getUserWeight(), user.getUserHeight());
         if (userInfoById == null) {
             user.setUserAge(User.calculateAge(user.getDateOfBirth()));
             user.setBasalMetabolism(User.calculateBMR(user.getUserHeight(), user.getUserAge(), user.getUserWeight(), user.getUserGender()));
@@ -45,13 +48,12 @@ public class UserService {
         } else {
             return null;
         }
-
     }
 
     // 성별, 나이, 키, 몸무게의 정보 업데이트
     @Transactional
     public UserHealthDTO updateUserHealthDTO(String username, UserHealthDTO userDTO) {
-        User user = getUserInfoById(username);
+        User user = getUserInfoByUserName(username);
         user.setUserAge(userDTO.getUserAge());
         user.setUserGender(userDTO.getUserGender());
         user.setUserWeight(userDTO.getUserWeight());
@@ -61,9 +63,10 @@ public class UserService {
         return dto;
     }
 
+    // 비밀번호, 이메일, 핸드폰번호의 개인정보 업데이트
     @Transactional
     public UserPersonalDTO updateUserPersonalDTO(String username, UserPersonalDTO userPersonalDTO) {
-        User user = getUserInfoById(username);
+        User user = getUserInfoByUserName(username);
         user.setPassword(userPersonalDTO.getPassword());
         user.setEmail(userPersonalDTO.getEmail());
         user.setPhoneNumber(userPersonalDTO.getPhoneNumber());
