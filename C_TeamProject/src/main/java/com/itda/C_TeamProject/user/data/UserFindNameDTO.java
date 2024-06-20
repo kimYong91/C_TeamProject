@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserFindUserNameDTO {
+public class UserFindNameDTO {
 
     private String email;           // 이메일
     private String phoneNumber;     // 핸드폰 번호

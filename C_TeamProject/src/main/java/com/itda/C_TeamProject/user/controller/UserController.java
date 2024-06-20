@@ -1,10 +1,7 @@
 package com.itda.C_TeamProject.user.controller;
 
 
-import com.itda.C_TeamProject.user.data.User;
-import com.itda.C_TeamProject.user.data.UserFindPasswordDTO;
-import com.itda.C_TeamProject.user.data.UserHealthDTO;
-import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+import com.itda.C_TeamProject.user.data.*;
 import com.itda.C_TeamProject.user.service.UserFindInfoService;
 import com.itda.C_TeamProject.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +62,15 @@ public class UserController {
         String password = findUserInfoService.getUserFindPassword(userFindPasswordDTO);
         Map<String, String> map = new HashMap<>();
         map.put("newPassword", password);
+        return ResponseEntity.ok(map);
+    }
+
+    @PostMapping("/findUsername")
+    public ResponseEntity<Map<String, String>> findUsername(@RequestBody UserFindNameDTO userFindNameDTO) {
+        String username = findUserInfoService.getUserFindName(userFindNameDTO);
+        System.out.println(username);
+        Map<String, String> map = new HashMap<>();
+        map.put("newUsername", username);
         return ResponseEntity.ok(map);
     }
 }

@@ -42,8 +42,8 @@ public class User {
         return new UserPersonalDTO(username, password, email, phoneNumber);
     }
 
-    public UserFindUserNameDTO toFindUserNameDTO() {
-        return new UserFindUserNameDTO(email, phoneNumber, dateOfBirth);
+    public UserFindNameDTO toFindUserNameDTO() {
+        return new UserFindNameDTO(email, phoneNumber, dateOfBirth);
     }
 
     public UserFindPasswordDTO toFindUserPasswordDTO() {
