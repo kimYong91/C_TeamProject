@@ -1,6 +1,6 @@
-package com.itda.C_TeamProject.jwt;
+package com.itda.C_TeamProject.user.jwt;
 
-import com.itda.C_TeamProject.user.CustomUserDetailsService;
+import com.itda.C_TeamProject.user.service.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

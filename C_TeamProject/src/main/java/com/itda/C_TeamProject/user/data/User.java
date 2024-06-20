@@ -1,4 +1,4 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,6 +41,16 @@ public class User {
     public UserPersonalDTO toPersonalDTO() {
         return new UserPersonalDTO(username, password, email, phoneNumber);
     }
+
+    public UserFindUserNameDTO toFindUserNameDTO() {
+        return new UserFindUserNameDTO(email, phoneNumber, dateOfBirth);
+    }
+
+    public UserFindPasswordDTO toFindUserPasswordDTO() {
+        return new UserFindPasswordDTO(username, email, phoneNumber, dateOfBirth);
+    }
+
+
 
     public static int calculateBMR(double height, int age, double weight, String gender) {
         int bmr = 0;

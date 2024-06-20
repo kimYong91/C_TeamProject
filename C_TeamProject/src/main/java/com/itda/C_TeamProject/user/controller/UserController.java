@@ -1,9 +1,18 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.controller;
 
 
+import com.itda.C_TeamProject.user.data.User;
+import com.itda.C_TeamProject.user.data.UserFindPasswordDTO;
+import com.itda.C_TeamProject.user.data.UserHealthDTO;
+import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+import com.itda.C_TeamProject.user.service.UserFindInfoService;
+import com.itda.C_TeamProject.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/itda")
@@ -11,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserFindInfoService findUserInfoService;
 
     @GetMapping("/oneUserHealthDTO")
     ResponseEntity<UserHealthDTO> getUserDTOInfo(@RequestParam String id) {
@@ -24,7 +36,7 @@ public class UserController {
 
     @GetMapping("/oneUserInfo")
     ResponseEntity<User> getOneUserInfo(@RequestParam String id) {
-        User userInfoById = userService.getUserInfoById(id);
+        User userInfoById = userService.getUserInfoByUserName(id);
         if (userInfoById == null) {
             return ResponseEntity.notFound().build();
         } else {
@@ -48,4 +60,11 @@ public class UserController {
         return userService.updateUserPersonalDTO(id, userPersonalDTO);
     }
 
+    @PostMapping("/findPassword")
+    public ResponseEntity<Map<String, String>> findPassword(@RequestBody UserFindPasswordDTO userFindPasswordDTO) {
+        String password = findUserInfoService.getUserFindPassword(userFindPasswordDTO);
+        Map<String, String> map = new HashMap<>();
+        map.put("newPassword", password);
+        return ResponseEntity.ok(map);
+    }
 }

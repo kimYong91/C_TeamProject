@@ -1,5 +1,7 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.service;
 
+import com.itda.C_TeamProject.user.data.User;
+import com.itda.C_TeamProject.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
