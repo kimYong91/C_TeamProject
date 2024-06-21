@@ -3,6 +3,7 @@ package com.itda.C_TeamProject.user.controller;
 import com.itda.C_TeamProject.user.data.User;
 import com.itda.C_TeamProject.user.data.UserHealthDTO;
 import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+
 import com.itda.C_TeamProject.user.service.UserUpdateInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,13 @@ public class updateUserInfoController {
     private UserUpdateInfoService userUpdateInfoService;
 
     @PostMapping("/oneUserHealthDTO/{id}")
-    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userDTO) {
-        return userUpdateInfoService.updateUserHealthDTO(id, userDTO);
+    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userHealthDTO) {
+        return userUpdateInfoService.updateUserHealthDTO(id, userHealthDTO);
     }
 
-    @PostMapping("/oneUserInfo/{id}")
-    UserPersonalDTO updateUserInfo(@PathVariable("id") String id, @RequestBody UserPersonalDTO userPersonalDTO) {
-        return userUpdateInfoService.updateUserPersonalDTO(id, userPersonalDTO);
+    @PatchMapping("/oneUserInfo/{username}")
+    UserPersonalDTO updateUserInfo(@PathVariable("username") String username, @RequestBody UserPersonalDTO userPersonalDTO) {
+        return userUpdateInfoService.updateUserPersonalDTO(username, userPersonalDTO);
     }
 
 
