@@ -4,6 +4,7 @@ import com.itda.C_TeamProject.user.UserRepository;
 import com.itda.C_TeamProject.user.data.User;
 import com.itda.C_TeamProject.user.data.UserHealthDTO;
 import com.itda.C_TeamProject.user.data.UserPersonalDTO;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,11 +27,17 @@ public class UserUpdateInfoService {
     public UserHealthDTO updateUserHealthDTO(String username, UserHealthDTO userDTO) {
         User user = userService.getUserInfoByUserName(username);
 
+        if (userDTO.getUserGender() != null && userDTO.getUserGender().isEmpty()) {
+            user.setUserGender(userDTO.getUserGender());
+        }
+        if (userDTO.getUserWeight() != 0) {
+            user.setUserWeight(userDTO.getUserWeight());
+        }
+        if (userDTO.getUserHeight() != 0.0) {
+            user.setUserHeight(userDTO.getUserHeight());
+        }
 
-        user.setUserGender(userDTO.getUserGender());
-        user.setUserWeight(userDTO.getUserWeight());
-        user.setUserHeight(userDTO.getUserHeight());
-
+        user.setBasalMetabolism(User.calculateBMR(user.getUserHeight(), user.getUserAge(), user.getUserWeight(), user.getUserGender()));
 
         User savedUser = userRepository.save(user);
         UserHealthDTO dto = savedUser.toDTO();
@@ -54,6 +61,9 @@ public class UserUpdateInfoService {
         if (userPersonalDTO.getDateOfBirth() != null && !userPersonalDTO.getDateOfBirth().isEmpty()) {
             user.setDateOfBirth(userPersonalDTO.getDateOfBirth());
         }
+
+        user.setUserAge(User.calculateAge(user.getDateOfBirth()));
+
         User savedUserPersonal = userRepository.save(user);
         UserPersonalDTO dto = savedUserPersonal.toPersonalDTO();
         return dto;

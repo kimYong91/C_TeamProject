@@ -16,9 +16,9 @@ public class updateUserInfoController {
     @Autowired
     private UserUpdateInfoService userUpdateInfoService;
 
-    @PostMapping("/oneUserHealthDTO/{id}")
-    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("id") String id, @RequestBody UserHealthDTO userHealthDTO) {
-        return userUpdateInfoService.updateUserHealthDTO(id, userHealthDTO);
+    @PatchMapping("/oneUserHealthDTO/{username}")
+    UserHealthDTO updateUserHealthDTOInfo(@PathVariable("username") String username, @RequestBody UserHealthDTO userHealthDTO) {
+        return userUpdateInfoService.updateUserHealthDTO(username, userHealthDTO);
     }
 
     @PatchMapping("/oneUserInfo/{username}")
