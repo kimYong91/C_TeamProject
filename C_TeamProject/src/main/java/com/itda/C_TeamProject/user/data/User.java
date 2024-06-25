@@ -52,13 +52,13 @@ public class User {
 
 
 
-    public static int calculateBMR(double height, int age, double weight, String gender) {
-        int bmr = 0;
+    public static double calculateBMR(double height, int age, double weight, String gender) {
+        double bmr = 0;
 
         if (gender.equalsIgnoreCase("남")) {
-            bmr = (int) (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age));
+            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
         } else if (gender.equalsIgnoreCase("여")) {
-            bmr = (int) (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age));
+            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
         }
 
         return Math.ceil(bmr);
