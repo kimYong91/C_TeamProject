@@ -1,7 +1,7 @@
-package com.itda.C_TeamProject.config;
+package com.itda.C_TeamProject.user.config;
 
 
-import com.itda.C_TeamProject.jwt.JwtRequestFilter;
+import com.itda.C_TeamProject.user.jwt.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("itda/createUser", "itda/auth").permitAll()
+                        .requestMatchers("itda/createUser", "itda/auth", "itda/findPassword", "/itda/findUsername").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

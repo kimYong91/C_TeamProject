@@ -1,4 +1,4 @@
-package com.itda.C_TeamProject.user;
+package com.itda.C_TeamProject.user.data;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +26,7 @@ public class User {
     private String email;           // 이메일
     private String phoneNumber;     // 핸드폰 번호
     private String dateOfBirth;       // 생년월일
-    private int userAge;
+    private int userAge;            // 나이
     private String userGender;        // 성별
     private int userWeight;         // 몸무게
     private double userHeight;      // 키
@@ -39,17 +39,26 @@ public class User {
     }
 
     public UserPersonalDTO toPersonalDTO() {
-        return new UserPersonalDTO(username, password, email, phoneNumber);
+        return new UserPersonalDTO(username, password, email, phoneNumber, dateOfBirth);
     }
 
-    public static double calculateBMR(double height, int age, double weight, String gender) {
-        double bmr = 0;
+    public UserFindNameDTO toFindUserNameDTO() {
+        return new UserFindNameDTO(email, phoneNumber, dateOfBirth);
+    }
+
+    public UserFindPasswordDTO toFindUserPasswordDTO() {
+        return new UserFindPasswordDTO(username, email, phoneNumber, dateOfBirth);
+    }
+
+
+
+    public static int calculateBMR(double height, int age, double weight, String gender) {
+        int bmr = 0;
 
         if (gender.equalsIgnoreCase("남")) {
-            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
-
+            bmr = (int) (88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age));
         } else if (gender.equalsIgnoreCase("여")) {
-            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            bmr = (int) (447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age));
         }
 
         return Math.ceil(bmr);
