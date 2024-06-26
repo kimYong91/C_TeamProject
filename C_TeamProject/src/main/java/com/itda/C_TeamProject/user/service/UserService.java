@@ -37,7 +37,6 @@ public class UserService {
     @Transactional
     public User createUser(User user) {
         User userInfoById = getUserInfoByUserName(user.getUsername());
-        System.out.println(user);
         if (userInfoById == null) {
             user.setUserAge(User.calculateAge(user.getDateOfBirth()));
             user.setBasalMetabolism(User.calculateBMR(user.getUserHeight(), user.getUserAge(), user.getUserWeight(), user.getUserGender()));
@@ -47,6 +46,17 @@ public class UserService {
             return saved;
         } else {
             return null;
+        }
+    }
+
+    @Transactional
+    public Boolean deleteUser(String userName) {
+        User userInfoById = getUserInfoByUserName(userName);
+        if (userInfoById != null) {
+            userRepository.delete(userInfoById);
+            return true;
+        } else {
+            return false;
         }
     }
 

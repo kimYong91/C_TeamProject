@@ -65,4 +65,12 @@ public class UserController {
         map.put("username", username);
         return ResponseEntity.ok(map);
     }
+
+    @DeleteMapping("/userDelete")
+    public ResponseEntity<Void> deleteComment(@RequestParam String username) {
+        if (!userService.deleteUser(username)) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
+    }
 }
