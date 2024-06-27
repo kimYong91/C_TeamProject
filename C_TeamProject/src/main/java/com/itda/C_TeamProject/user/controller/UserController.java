@@ -41,6 +41,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/oneUsername")
+    ResponseEntity<User> getOneUsername(@RequestParam String id) {
+        User userInfoById = userService.getUserInfoByUserName(id);
+        if (userInfoById == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(userInfoById);
+        }
+    }
+
     @PostMapping("/createUser")
     public User createNewUser(@RequestBody User user) {
         User createUser = userService.createUser(user);

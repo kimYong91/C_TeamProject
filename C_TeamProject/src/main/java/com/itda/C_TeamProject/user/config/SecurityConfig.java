@@ -39,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
-                        .requestMatchers("itda/createUser", "itda/auth", "itda/findPassword", "/itda/findUsername").permitAll()
+                        .requestMatchers("itda/createUser", "itda/auth", "itda/findPassword", "/itda/findUsername", "/itda/oneUsername").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
