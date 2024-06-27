@@ -51,7 +51,6 @@ public class User {
     }
 
 
-
     public static double calculateBMR(double height, int age, double weight, String gender) {
         double bmr = 0;
 

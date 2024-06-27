@@ -1,12 +1,10 @@
 package com.itda.C_TeamProject.user.controller;
 
-import com.itda.C_TeamProject.user.data.User;
 import com.itda.C_TeamProject.user.data.UserHealthDTO;
 import com.itda.C_TeamProject.user.data.UserPersonalDTO;
 
 import com.itda.C_TeamProject.user.service.UserUpdateInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

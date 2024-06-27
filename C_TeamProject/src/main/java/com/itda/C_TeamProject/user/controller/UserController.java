@@ -47,8 +47,6 @@ public class UserController {
         return createUser;
     }
 
-
-
     @PostMapping("/findPassword")
     public ResponseEntity<Map<String, String>> findPassword(@RequestBody UserFindPasswordDTO userFindPasswordDTO) {
         String password = findUserInfoService.getUserFindPassword(userFindPasswordDTO);

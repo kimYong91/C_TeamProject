@@ -69,6 +69,4 @@ public class JwtUtil {
 
         return isEqualUsername && isNotExpired;
     }
-
-
 }
