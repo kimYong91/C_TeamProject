@@ -75,7 +75,7 @@ public class UserController {
     }
 
     @DeleteMapping("/userDelete")
-    public ResponseEntity<Void> deleteComment(@RequestParam String username) {
+    public ResponseEntity<Void> userDelete(@RequestParam String username) {
         if (!userService.deleteUser(username)) {
             return ResponseEntity.notFound().build();
         }
