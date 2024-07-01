@@ -31,9 +31,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String jwt = null;
         String username = null;
+        String refreshToken = null;
 
         if (authorization != null && authorization.startsWith("Bearer ")) {
             jwt = authorization.substring(7);
+            refreshToken = request.getHeader("Refresh-Token");
             username = jwtUtil.extractUsername(jwt);
         }
 
@@ -55,6 +57,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 );
 
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+
+                // 리프레시 토큰이 존재하고 유효한지 확인합니다.
+                if (refreshToken != null && jwtUtil.validateRefreshToken(refreshToken, username)) {
+                    // 새로운 JWT를 생성합니다.
+                    String newJwt = jwtUtil.generateToken(userDetails);
+
+                    // 새로운 JWT를 응답 헤더에 추가합니다.
+                    response.setHeader("New-Token", newJwt);
+                }
             }
         }
 

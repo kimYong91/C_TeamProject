@@ -4,7 +4,6 @@ import com.itda.C_TeamProject.user.UserRepository;
 import com.itda.C_TeamProject.user.data.User;
 import com.itda.C_TeamProject.user.data.UserHealthDTO;
 import com.itda.C_TeamProject.user.data.UserPersonalDTO;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
