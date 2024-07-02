@@ -1,9 +1,9 @@
-package com.itda.C_TeamProject.controller;
+package com.itda.C_TeamProject.user.controller;
 
-import com.itda.C_TeamProject.jwt.JwtUtil;
-import com.itda.C_TeamProject.user.CustomUserDetailsService;
-import com.itda.C_TeamProject.user.User;
-import com.itda.C_TeamProject.user.UserService;
+import com.itda.C_TeamProject.user.jwt.JwtUtil;
+import com.itda.C_TeamProject.user.data.User;
+import com.itda.C_TeamProject.user.service.CustomUserDetailsService;
+import com.itda.C_TeamProject.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
