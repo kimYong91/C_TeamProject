@@ -38,7 +38,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 	runtimeOnly 'com.h2database:h2'				// In-Memory Database (경량 관계형 DB)
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:10.11.6' // mariaDB	// MySQL 접속 커넥터
+	runtimeOnly 'com.mysql:mysql-connector-j:8.4.0'// MySQL 접속 커넥터
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:3.4.0' // mariaDB
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
