@@ -36,7 +36,23 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="bb546b02-820e-40a4-b26e-aa80c73c752a" object-ref="schemas/itda/tables/user" />
+    </open-files>
+  </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="bb546b02-820e-40a4-b26e-aa80c73c752a" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="bb546b02-820e-40a4-b26e-aa80c73c752a" dataset="itda.user" active-filter-id="de665b35-97e8-4b2c-b306-ec83640dde3c">
+      <filter id="de665b35-97e8-4b2c-b306-ec83640dde3c" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="username" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+  </component>
+  <component name="DBNavigator.Project.ObjectQuickFilterManager">
+    <last-used-operator value="EQUAL" />
+    <filters />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="bb546b02-820e-40a4-b26e-aa80c73c752a" dataset="itda.user" active-filter-id="de665b35-97e8-4b2c-b306-ec83640dde3c">

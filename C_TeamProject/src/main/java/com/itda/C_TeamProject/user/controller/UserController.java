@@ -81,4 +81,9 @@ public class UserController {
         }
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/SecurityBarrier")
+    public String SecurityBarrier() {
+        return "pass barrier";
+    }
 }
