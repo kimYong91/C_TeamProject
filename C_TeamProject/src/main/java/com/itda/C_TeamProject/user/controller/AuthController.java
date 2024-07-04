@@ -51,8 +51,4 @@ public class AuthController {
 
         return response;
     }
-    @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        return userService.createUser(user);
-    }
 }
