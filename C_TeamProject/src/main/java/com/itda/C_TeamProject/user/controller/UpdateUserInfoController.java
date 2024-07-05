@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/itda")
-public class updateUserInfoController {
+public class UpdateUserInfoController {
 
     @Autowired
     private UserUpdateInfoService userUpdateInfoService;
