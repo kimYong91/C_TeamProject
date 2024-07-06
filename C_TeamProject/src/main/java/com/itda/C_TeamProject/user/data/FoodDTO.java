@@ -2,7 +2,6 @@ package com.itda.C_TeamProject.user.data;
 
 public class FoodDTO {
 
-    private String id;
     private String 식품명;
     private float 에너지;
     private float 단백질;
@@ -13,8 +12,8 @@ public class FoodDTO {
 
     public FoodDTO() {}
 
-    public FoodDTO(String id, String 식품명, float 에너지, float 단백질, float 지방, float 탄수화물, float 당류, float 나트륨) {
-        this.id = id;
+    public FoodDTO( String 식품명, float 에너지, float 단백질, float 지방, float 탄수화물, float 당류, float 나트륨) {
+
         this.식품명 = 식품명;
         this.에너지 = 에너지;
         this.단백질 = 단백질;
@@ -24,9 +23,6 @@ public class FoodDTO {
         this.나트륨 = 나트륨;
     }
 
-    public String getId() {
-        return id;
-    }
 
     public String get식품명() {
         return 식품명;
@@ -48,9 +44,6 @@ public class FoodDTO {
         return 탄수화물;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public void set식품명(String 식품명) {
         this.식품명 = 식품명;

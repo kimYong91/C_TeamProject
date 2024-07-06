@@ -32,7 +32,6 @@ public class FoodDAOImpl implements FoodDAO {
 
     private FoodDTO convertToDTO(Food food) {
         return new FoodDTO(
-                food.getId(),
                 food.getName(),
                 food.getEnergy(),
                 food.getProtein(),
@@ -45,7 +44,6 @@ public class FoodDAOImpl implements FoodDAO {
 
     private Food convertToEntity(FoodDTO foodDTO) {
         return new Food(
-                foodDTO.getId(),
                 foodDTO.get식품명(),
                 foodDTO.get에너지(),
                 foodDTO.get단백질(),

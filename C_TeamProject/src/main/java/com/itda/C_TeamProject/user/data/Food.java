@@ -3,13 +3,10 @@ package com.itda.C_TeamProject.user.data;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "diettest")
+@Table(name = "fooditda")
 public class Food {
 
     @Id
-    @Column(name = "식품코드")
-    private String id;
-
     @Column(name = "식품명")
     private String name;
 
@@ -33,8 +30,7 @@ public class Food {
 
     public Food() {}
 
-    public Food(String id, String name, float energy, float protein, float fat, float carbohydrate, float sugars, float sodium) {
-        this.id = id;
+    public Food(String name, float energy, float protein, float fat, float carbohydrate, float sugars, float sodium) {
         this.name = name;
         this.energy = energy;
         this.protein = protein;
@@ -42,10 +38,6 @@ public class Food {
         this.carbohydrate = carbohydrate;
         this.sugars = sugars;
         this.sodium = sodium;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public String getName() {
@@ -88,9 +80,6 @@ public class Food {
         this.carbohydrate = carbohydrate;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public float getSugars() {
         return sugars;
