@@ -40,6 +40,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
                         .requestMatchers("itda/createUser", "itda/auth", "itda/findPassword", "/itda/findUsername", "/itda/oneUsername").permitAll()
+                        .requestMatchers("api/foods/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

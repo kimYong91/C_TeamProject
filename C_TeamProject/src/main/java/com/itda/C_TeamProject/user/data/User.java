@@ -33,6 +33,7 @@ public class User {
     private double basalMetabolism;    // 기초대사랑
     @Column(name = "join_date", nullable = false )
     private LocalDateTime joinDate; // 가입 날짜
+    private String refreshToken;    // 리프레시 토큰 필드 추가
 
     public UserHealthDTO toDTO() {
         return new UserHealthDTO(userAge, userGender, userWeight, userHeight, basalMetabolism);
