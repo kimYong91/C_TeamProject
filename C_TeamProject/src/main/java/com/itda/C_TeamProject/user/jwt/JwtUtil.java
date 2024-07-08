@@ -8,27 +8,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.SecureRandom;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+
 @Component
 public class JwtUtil {
 
-    private final byte[] refreshSecret = generateRandomBytes(32);
-    private final byte[] jwtSecret = generateRandomBytes(32);
-    private final long jwtExpiration = 86400000; // 1 day
-    private final long refreshExpiration = 604800000; // 7 days
+    private final String secret = "ec81721d210b7a86f4536721495982d974c71237c4fc0ad37d3ccdfd925cceb6";
+    private final long expiration = 86400000;
 
-    private SecretKey getSigningKey(byte[] secret) {
-        return Keys.hmacShaKeyFor(secret);
+    private SecretKey getSigningKey() {
+        return Keys.hmacShaKeyFor(secret.getBytes());
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(getSigningKey(jwtSecret))
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -47,40 +45,28 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    private String createToken(Map<String, Object> claims, String subject, long expiration, byte[] secret) {
+    private String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSigningKey(secret), SignatureAlgorithm.HS256)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, userDetails.getUsername(), jwtExpiration, jwtSecret);
+        return createToken(claims, userDetails.getUsername());
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         String username = extractUsername(token);
-        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
-    }
 
-    public String generateRefreshToken(String username) {
-        Map<String, Object> claims = new HashMap<>();
-        return createToken(claims, username, refreshExpiration, refreshSecret);
-    }
+        Boolean isEqualUsername = username.equals(userDetails.getUsername());
 
-    public Boolean validateRefreshToken(String token, String username) {
-        String extractedUsername = extractUsername(token);
-        return extractedUsername.equals(username) && !isTokenExpired(token);
-    }
+        Boolean isNotExpired = !isTokenExpired(token);
 
-    private byte[] generateRandomBytes(int length) {
-        byte[] randomBytes = new byte[length];
-        SecureRandom secureRandom = new SecureRandom();
-        secureRandom.nextBytes(randomBytes);
-        return randomBytes;
+        return isEqualUsername && isNotExpired;
     }
 }
