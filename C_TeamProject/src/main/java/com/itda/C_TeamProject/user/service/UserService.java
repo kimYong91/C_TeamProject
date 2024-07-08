@@ -59,13 +59,4 @@ public class UserService {
             return false;
         }
     }
-
-    @Transactional
-    public void updateRefreshToken(String username, String refreshToken) {
-        User user = getUserInfoByUserName(username);
-        if (user != null) {
-            user.setRefreshToken(refreshToken);
-            userRepository.save(user);
-        }
-    }
 }
